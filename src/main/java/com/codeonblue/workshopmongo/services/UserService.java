@@ -1,6 +1,7 @@
 package com.codeonblue.workshopmongo.services;
 
 import com.codeonblue.workshopmongo.domain.User;
+import com.codeonblue.workshopmongo.dto.UserDTO;
 import com.codeonblue.workshopmongo.repository.UserRepository;
 import com.codeonblue.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,11 @@ public class UserService {
         return user.get();
     }
 
+    public User insert(User obj){
+        return userRepository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+    }
 }
