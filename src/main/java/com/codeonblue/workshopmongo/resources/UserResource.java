@@ -1,5 +1,6 @@
 package com.codeonblue.workshopmongo.resources;
 
+import com.codeonblue.workshopmongo.domain.Post;
 import com.codeonblue.workshopmongo.domain.User;
 import com.codeonblue.workshopmongo.dto.UserDTO;
 import com.codeonblue.workshopmongo.services.UserService;
@@ -54,4 +55,11 @@ public class UserResource {
         obj = userService.update(obj);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
+
 }
